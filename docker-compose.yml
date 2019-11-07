@@ -1,0 +1,22 @@
+version: '3.5'
+
+services:
+  freelance-cockpit:
+    build:
+      context: '.'
+    container_name: freelance-cockpit
+    volumes:
+      - ./FC_application:/var/www/html
+      - ./enviroment:/var/www/html/.env
+    ports:
+      - 18000:80
+
+  db:
+    image: mariadb:latest
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_DATABASE=
+      - MYSQL_USER=
+      - MYSQL_PASSWORD=
