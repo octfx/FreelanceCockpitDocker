@@ -5,3 +5,5 @@ This Dockerfile only bundles all needed php extensions. It does **not** include 
 Add the database credentials to docker-compose.yaml.  
 Run `docker-compose up -d`  
 Visit `http://container-url:10080`
+
+Remeber to set `DB_HOST=db` in your environment file.

@@ -7,9 +7,11 @@ services:
     container_name: freelance-cockpit
     volumes:
       - ./FC_application:/var/www/html
-      - ./enviroment:/var/www/html/.env
+      - ./environment:/var/www/html/.env
     ports:
       - 18000:80
+    depends_on:
+      - db
 
   db:
     image: mariadb:latest
