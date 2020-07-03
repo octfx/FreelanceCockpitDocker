@@ -5,20 +5,28 @@ services:
     build:
       context: '.'
     container_name: freelance-cockpit
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     volumes:
       - ./FC_application:/var/www/html
       - ./environment:/var/www/html/.env
+      - /etc/localtime:/etc/localtime:ro
     ports:
-      - 18000:80
+      - 80:80
     depends_on:
       - db
 
   db:
     image: mariadb:latest
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     volumes:
       - ./db:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
     environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_DATABASE=
-      - MYSQL_USER=
-      - MYSQL_PASSWORD=
+      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_DATABASE=fc
+      - MYSQL_USER=fc
+      - MYSQL_PASSWORD=12345
